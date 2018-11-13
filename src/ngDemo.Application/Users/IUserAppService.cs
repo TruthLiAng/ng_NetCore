@@ -11,5 +11,7 @@ namespace ngDemo.Users
         Task<ListResultDto<RoleDto>> GetRoles();
 
         Task ChangeLanguage(ChangeUserLanguageDto input);
+
+        Task<string> GetNameAsync();
     }
 }

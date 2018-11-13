@@ -150,5 +150,17 @@ namespace ngDemo.Users
         {
             identityResult.CheckErrors(LocalizationManager);
         }
+
+        public async Task<string> GetNameAsync()
+        {
+            string res = "";
+            var id = _userManager.AbpSession.UserId;
+            if (id.HasValue)
+            {
+                var user = await _userManager.GetUserByIdAsync(id.Value);
+                res = user.Name;
+            }
+            return res;
+        }
     }
 }
