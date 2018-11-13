@@ -12,5 +12,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ngDemo.Core\ngDemo.Core.csproj" />
+    <ProjectReference Include="..\ngDemo.EntityFrameworkCore\ngDemo.EntityFrameworkCore.csproj" />
   </ItemGroup>
 </Project>

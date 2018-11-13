@@ -4,13 +4,15 @@ using ngDemo.Authorization.Roles;
 using ngDemo.Authorization.Users;
 using ngDemo.MultiTenancy;
 using Abp.Localization;
+using ngDemo.Models;
 
 namespace ngDemo.EntityFrameworkCore
 {
     public class ngDemoDbContext : AbpZeroDbContext<Tenant, Role, User, ngDemoDbContext>
     {
         /* Define a DbSet for each entity of the application */
-
+        DbSet<Account> Accounts { get; set; }
+        DbSet<AccountLog> AccountLogs { get; set; }
         public ngDemoDbContext(DbContextOptions<ngDemoDbContext> options)
             : base(options)
         {
