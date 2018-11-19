@@ -29289,3 +29289,50 @@ INFO  2018-11-12 22:20:18,768 [8    ] soft.AspNetCore.Hosting.Internal.WebHost -
 INFO  2018-11-12 22:20:18,768 [3    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
 INFO  2018-11-12 22:20:18,849 [8    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 87.613ms 200 
 INFO  2018-11-12 22:20:19,233 [3    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 469.962ms 404 
+DEBUG 2018-11-19 15:10:20,599 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-19 15:10:21,079 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2018-11-19 15:10:21,181 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: ngDemo.Web.Host.Startup.ngDemoWebHostModule, ngDemo.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,194 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: ngDemo.ngDemoWebCoreModule, ngDemo.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,195 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: ngDemo.ngDemoApplicationModule, ngDemo.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,197 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: ngDemo.ngDemoCoreModule, ngDemo.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,198 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,199 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,200 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,206 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,222 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: ngDemo.EntityFrameworkCore.ngDemoEntityFrameworkModule, ngDemo.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,224 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,255 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,258 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,260 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,262 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,264 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:21,280 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2018-11-19 15:10:21,891 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2018-11-19 15:10:21,891 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2018-11-19 15:10:21,891 [1    ] o.Configuration.LanguageManagementConfig - Converted ngDemo (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2018-11-19 15:10:21,891 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2018-11-19 15:10:24,032 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: ngDemo.EntityFrameworkCore.ngDemoDbContext, ngDemo.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-19 15:10:29,869 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2018-11-19 15:10:30,160 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-19 15:10:30,358 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2018-11-19 15:10:30,454 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: ngDemo
+DEBUG 2018-11-19 15:10:30,578 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-19 15:10:31,534 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-19 15:10:31,893 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 11 classes define auto mapping attributes
+DEBUG 2018-11-19 15:10:31,894 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - ngDemo.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2018-11-19 15:10:31,920 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - ngDemo.Users.Dto.CreateUserDto
+DEBUG 2018-11-19 15:10:31,923 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - ngDemo.Users.Dto.UserDto
+DEBUG 2018-11-19 15:10:31,925 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - ngDemo.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2018-11-19 15:10:31,926 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - ngDemo.Sessions.Dto.UserLoginInfoDto
+DEBUG 2018-11-19 15:10:31,927 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - ngDemo.Roles.Dto.CreateRoleDto
+DEBUG 2018-11-19 15:10:31,928 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - ngDemo.Roles.Dto.PermissionDto
+DEBUG 2018-11-19 15:10:31,928 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - ngDemo.Roles.Dto.RoleDto
+DEBUG 2018-11-19 15:10:31,932 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - ngDemo.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2018-11-19 15:10:31,933 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - ngDemo.MultiTenancy.Dto.TenantDto
+DEBUG 2018-11-19 15:10:31,933 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - ngDemo.MoneyAccount.Dto.AccountDto
+INFO  2018-11-19 15:11:00,237 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2018-11-19 15:11:00,283 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2018-11-19 15:11:00,286 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2018-11-19 15:11:00,959 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 752.4007ms 200 
+INFO  2018-11-19 15:11:02,601 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2451.9965ms 404 
+INFO  2018-11-19 15:11:04,935 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4416.0696ms 200 application/json;charset=utf-8
