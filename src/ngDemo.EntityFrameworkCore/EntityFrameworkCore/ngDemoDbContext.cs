@@ -11,8 +11,9 @@ namespace ngDemo.EntityFrameworkCore
     public class ngDemoDbContext : AbpZeroDbContext<Tenant, Role, User, ngDemoDbContext>
     {
         /* Define a DbSet for each entity of the application */
-        DbSet<Account> Accounts { get; set; }
-        DbSet<AccountLog> AccountLogs { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<AccountLog> AccountLogs { get; set; }
+
         public ngDemoDbContext(DbContextOptions<ngDemoDbContext> options)
             : base(options)
         {
