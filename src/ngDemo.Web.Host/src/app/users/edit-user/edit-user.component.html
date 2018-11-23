@@ -1,6 +1,5 @@
 ﻿<div bsModal #editUserModal="bs-modal" class="modal fade" (onShown)="onShown()" tabindex="-1" role="dialog" aria-labelledby="editUserModal" aria-hidden="true" [config]="{backdrop: 'static'}">
     <div class="modal-dialog">
-
         <div #modalContent class="modal-content">
             <form *ngIf="active" #editUserForm="ngForm" id="frm_edit_user" novalidate (ngSubmit)="save()">
                 <div class="modal-header">

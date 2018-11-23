@@ -36,6 +36,7 @@ import { RightSideBarComponent } from '@app/layout/right-sidebar.component';
 import { MoneyAccountServiceProxy } from '@shared/service-proxies/service-proxies';
 import { AccountsComponent } from '@app/moneyAccount/accounts.component';
 import { CreateAccountComponent } from './moneyAccount/create-account/create-account.component';
+import { EditAccountComponent} from './moneyAccount/edit-account/edit-account.component';
 
 @NgModule({
     declarations: [
@@ -59,7 +60,8 @@ import { CreateAccountComponent } from './moneyAccount/create-account/create-acc
         RightSideBarComponent,
 
         AccountsComponent,
-        CreateAccountComponent
+        CreateAccountComponent,
+        EditAccountComponent
 
     ],
     imports: [

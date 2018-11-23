@@ -1,0 +1,83 @@
+<div bsModal #editAccountModal="bs-modal" class="modal fade" (onShown)="onShown()" tabindex="-1" role="dialog" aria-labelledby="editAccountModal" aria-hidden="true" [config]="{backdrop:'static'}">
+    <div class="modal-dialog">
+        <div #modalContent class="modal-content">
+            <form *ngIf="active" #editAccountForm="ngForm" id="frm_edit_account" novalidate (ngSubmit)="save()">
+                <div class="modal-header">
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">
+                        <span>{{l("EditAccount")</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#edit-account-details" data-toggle="tab">Account Details</a></li>
+                        <li role="presentation"><a href="#edit-account-createUser" data-toggle="tab">Account Roles</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane animated fadeIn active" id="edit-account-details">
+
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="name" type="text" name="Name" [(ngModel)]="account.name"
+                                                required maxlength="32" minlength="2" class="validate form-control">
+                                            <label for="name" class="form-label">{{l("Name")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="money" type="text" name="Money" [(ngModel)]="account.money"
+                                                required maxlength="32" class="validate form-control">
+                                            <label for="money" class="form-label">{{l("Money")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="creationTime" type="text" name="CreationTime" [(ngModel)]="account.creationTime"
+                                                required maxlength="32" class="validate form-control">
+                                            <label for="creationTime" class="form-label">{{l("CreationTime")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane animated fadeIn" id="edit-account-createUser">
+                            <div class="row">
+                                <div class="col-sm-12 ">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="createUser" type="text" name="CreateUser" [(ngModel)]="user.name"
+                                                required maxlength="32" class="validate form-control" dis>
+                                            <label for="createUser" class="form-label">{{l("createUser")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default waves-effect" (click)="close()">
+                        {{l("Cancel")}}
+                    </button>
+                    <button [disabled]="!editAccountForm.form.valid" type="submit" class="btn btn-primary waves-effect">
+                        {{l("Save")}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

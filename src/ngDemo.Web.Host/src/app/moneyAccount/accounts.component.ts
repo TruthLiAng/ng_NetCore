@@ -3,7 +3,7 @@ import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { MoneyAccountServiceProxy, AccountDto, PagedResultDtoOfAccountDto } from '@shared/service-proxies/service-proxies';
 import { PagedListingComponentBase, PagedRequestDto } from 'shared/paged-listing-component-base';
 import { CreateAccountComponent } from 'app/moneyAccount/create-account/create-account.component';
-import { EditUserComponent } from 'app/users/edit-user/edit-user.component';
+import { EditAccountComponent } from 'app/moneyAccount/edit-account/edit-account.component';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class AccountsComponent extends PagedListingComponentBase<AccountDto> {
     @ViewChild('createAccountModal') createAccountModal: CreateAccountComponent;
-    @ViewChild('editAccountModal') editAccountModal: EditUserComponent;
+    @ViewChild('editAccountModal') editAccountModal: EditAccountComponent;
 
     active: boolean = false;
     accounts: AccountDto[] = [];
@@ -55,7 +55,7 @@ export class AccountsComponent extends PagedListingComponentBase<AccountDto> {
         this.createAccountModal.show();
     }
 
-    editUser(account: AccountDto): void {
+    editAccount(account: AccountDto): void {
         this.editAccountModal.show(account.id);
     }
 }
