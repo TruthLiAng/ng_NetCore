@@ -444,7 +444,7 @@ export class MoneyAccountServiceProxy {
      * @return Success
      */
     delete(id: number | null | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/services/app/MoneyAccount/Delete?";
+        let url_ = this.baseUrl + "/api/services/app/money-account/Delete?";
         if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
         url_ = url_.replace(/[?&]$/, "");

@@ -34,9 +34,11 @@ import { SideBarFooterComponent } from '@app/layout/sidebar-footer.component';
 import { RightSideBarComponent } from '@app/layout/right-sidebar.component';
 
 import { MoneyAccountServiceProxy } from '@shared/service-proxies/service-proxies';
-import { AccountsComponent } from '@app/moneyAccount/accounts.component';
-import { CreateAccountComponent } from './moneyAccount/create-account/create-account.component';
-import { EditAccountComponent} from './moneyAccount/edit-account/edit-account.component';
+import { AccountsComponent } from '@app/money-account/accounts.component';
+import { CreateAccountComponent } from './money-account/create-account/create-account.component';
+import { EditAccountComponent} from './money-account/edit-account/edit-account.component';
+import { MoneyLogComponent } from './money-log/money-log.component';
+import { EditLogComponent } from './money-log/edit-log/edit-log.component';
 
 @NgModule({
     declarations: [
@@ -61,7 +63,9 @@ import { EditAccountComponent} from './moneyAccount/edit-account/edit-account.co
 
         AccountsComponent,
         CreateAccountComponent,
-        EditAccountComponent
+        EditAccountComponent,
+        MoneyLogComponent,
+        EditLogComponent
 
     ],
     imports: [

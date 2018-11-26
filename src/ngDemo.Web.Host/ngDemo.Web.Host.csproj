@@ -65,7 +65,7 @@
     <None Remove="node_modules\**" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\app\moneyAccount\edit-account\" />
+    <Folder Include="src\app\money-account\edit-account\" />
   </ItemGroup>
   <Target Name="PrepublishScript" BeforeTargets="ComputeFilesToPublish">
     <Exec Command="ng build --prod" />
