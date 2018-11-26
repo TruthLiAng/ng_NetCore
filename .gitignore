@@ -253,4 +253,3 @@ paket-files/
 
 # Visual Code Config File
 .vscode/
-src/ngDemo.Web.Host/App_Data/Logs/
