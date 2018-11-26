@@ -253,3 +253,6 @@ paket-files/
 
 # Visual Code Config File
 .vscode/
+
+# log
+.Logs/
