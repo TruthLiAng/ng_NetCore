@@ -4,6 +4,7 @@ import { MoneyAccountServiceProxy, AccountDto, PagedResultDtoOfAccountDto } from
 import { PagedListingComponentBase, PagedRequestDto } from 'shared/paged-listing-component-base';
 import { CreateAccountComponent } from 'app/money-account/create-account/create-account.component';
 import { EditAccountComponent } from 'app/money-account/edit-account/edit-account.component';
+import { MoneyLogComponent } from 'app/money-log/money-log.component';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -13,6 +14,7 @@ import { finalize } from 'rxjs/operators';
 export class AccountsComponent extends PagedListingComponentBase<AccountDto> {
     @ViewChild('createAccountModal') createAccountModal: CreateAccountComponent;
     @ViewChild('editAccountModal') editAccountModal: EditAccountComponent;
+    @ViewChild('accountLogListModal') accountLogListModal: MoneyLogComponent;
 
     active: boolean = false;
     accounts: AccountDto[] = [];

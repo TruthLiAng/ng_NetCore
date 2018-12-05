@@ -33,12 +33,14 @@ import { SideBarNavComponent } from '@app/layout/sidebar-nav.component';
 import { SideBarFooterComponent } from '@app/layout/sidebar-footer.component';
 import { RightSideBarComponent } from '@app/layout/right-sidebar.component';
 
-import { MoneyAccountServiceProxy } from '@shared/service-proxies/service-proxies';
+import { MoneyAccountServiceProxy, MoneyAccountLogServiceProxy } from '@shared/service-proxies/service-proxies';
+
 import { AccountsComponent } from '@app/money-account/accounts.component';
 import { CreateAccountComponent } from './money-account/create-account/create-account.component';
 import { EditAccountComponent} from './money-account/edit-account/edit-account.component';
 import { MoneyLogComponent } from './money-log/money-log.component';
 import { EditLogComponent } from './money-log/edit-log/edit-log.component';
+import { CreatelogComponent } from './money-log/createlog/createlog.component';
 
 @NgModule({
     declarations: [
@@ -65,7 +67,8 @@ import { EditLogComponent } from './money-log/edit-log/edit-log.component';
         CreateAccountComponent,
         EditAccountComponent,
         MoneyLogComponent,
-        EditLogComponent
+        EditLogComponent,
+        CreatelogComponent
 
     ],
     imports: [
@@ -81,7 +84,8 @@ import { EditLogComponent } from './money-log/edit-log/edit-log.component';
         NgxPaginationModule
     ],
     providers: [
-        MoneyAccountServiceProxy
+        MoneyAccountServiceProxy,
+        MoneyAccountLogServiceProxy
     ]
 })
 export class AppModule { }

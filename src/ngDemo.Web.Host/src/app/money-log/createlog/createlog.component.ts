@@ -1,21 +1,22 @@
-import { Component, OnInit, EventEmitter, Injector, ViewChild, ElementRef, Output } from '@angular/core';
-import { AccountLogDto, MoneyAccountLogServiceProxy } from '@shared/service-proxies/service-proxies';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Injector } from '@angular/core';
 import { AppComponentBase } from '@shared/app-component-base';
-import { finalize } from 'rxjs/operators';
 import { ModalDirective } from 'ngx-bootstrap';
+import { AccountDto, MoneyAccountLogServiceProxy, AccountLogDto } from '@shared/service-proxies/service-proxies';
+import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-edit-log',
-  templateUrl: './edit-log.component.html'
+  selector: 'app-create-log',
+  templateUrl: './createlog.component.html',
+  styleUrls: ['./createlog.component.css']
 })
-export class EditLogComponent extends AppComponentBase {
-  @ViewChild('editAccountLogModal') modal: ModalDirective;
+export class CreatelogComponent extends AppComponentBase {
+  @ViewChild('createAccountLogModal') modal: ModalDirective;
   @ViewChild('modalContent') modalContent: ElementRef;
 
   @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
 
-  saving: boolean = false;
   active: boolean = false;
+  saving: boolean = false;
   log: AccountLogDto = null;
 
   constructor(
@@ -25,15 +26,10 @@ export class EditLogComponent extends AppComponentBase {
       super(injector);
   }
 
-  show(id: number): void {
-      this._accountLogService.get(id)
-          .subscribe(
-              (result) => {
-                  this.log = result;
-                  this.active = true;
-                  this.modal.show();
-              }
-          );
+  show(): void {
+      this.active = true;
+      this.modal.show();
+      this.log = new AccountLogDto();
   }
 
   onShown(): void {
@@ -41,9 +37,8 @@ export class EditLogComponent extends AppComponentBase {
   }
 
   save(): void {
-
       this.saving = true;
-      this._accountLogService.update(this.log)
+      this._accountLogService.create(this.log)
           .pipe(finalize(() => { this.saving = false; }))
           .subscribe(() => {
               this.notify.info(this.l('SavedSuccessfully'));
