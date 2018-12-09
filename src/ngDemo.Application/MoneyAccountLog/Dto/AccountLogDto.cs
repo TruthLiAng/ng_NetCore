@@ -12,6 +12,7 @@ namespace ngDemo.MoneyAccountLog.Dto
     [AutoMapFrom(typeof(AccountLog))]
     public class AccountLogDto : EntityDto, IHasCreationTime, IAudited, ISoftDelete
     {
+        public virtual int AccountId { get; set; }
         public virtual string Cause { get; set; }
 
         public virtual int Money { get; set; }

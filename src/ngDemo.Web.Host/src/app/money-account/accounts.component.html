@@ -47,6 +47,7 @@
                                 <ul class="dropdown-menu pull-right">
                                     <li><a href="javascript:void(0);" class="waves-effect waves-block" (click)="editAccount(account)"><i class="material-icons">create</i>{{l('Edit')}}</a></li>
                                     <li><a href="javascript:void(0);" class="waves-effect waves-block" (click)="delete(account)"><i class="material-icons">delete_sweep</i>{{l('Delete')}}</a></li>
+                                    <li><a href="javascript:void(0);" class="waves-effect waves-block" (click)="createLog(account)"><i class="material-icons">delete_sweep</i>增加日志</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -67,3 +68,4 @@
 
 <create-account-modal #createAccountModal (modalSave)="refresh()"></create-account-modal>
 <edit-account-modal #editAccountModal (modalSave)="refresh()"></edit-account-modal>
+<app-create-log #createAccountLogModal (modalSave)="refresh()"></app-create-log>

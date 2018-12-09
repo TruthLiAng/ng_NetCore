@@ -11,5 +11,6 @@ namespace ngDemo.MoneyAccount
 {
     public interface IMoneyAccountAppService : IAsyncCrudAppService<AccountDto, int, PagedResultRequestDto, AccountDto, AccountDto>
     {
+        Task<Account> UpdateMoneyAsync(int id, int money);
     }
 }

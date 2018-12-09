@@ -18,5 +18,14 @@ namespace ngDemo.MoneyAccountLog
         {
             _accountLogRepository = accountLogRepository;
         }
+
+        public async Task<PagedResultDto<AccountLogDto>> GetAllByAccountId(PagedResultRequestAccountLogDto input)
+        {
+            var logs = await _accountLogRepository.GetAllListAsync(o => o.AccountId == input.accountId);
+
+            var res = ObjectMapper.Map<List<AccountLogDto>>(logs);
+
+            return new PagedResultDto<AccountLogDto>(logs.Count, res);
+        }
     }
 }

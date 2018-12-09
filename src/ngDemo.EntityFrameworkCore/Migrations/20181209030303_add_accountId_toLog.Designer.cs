@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ngDemo.EntityFrameworkCore;
@@ -9,9 +10,10 @@ using ngDemo.EntityFrameworkCore;
 namespace ngDemo.Migrations
 {
     [DbContext(typeof(ngDemoDbContext))]
-    partial class ngDemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181209030303_add_accountId_toLog")]
+    partial class add_accountId_toLog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -13,7 +13,7 @@ import { CreatelogComponent } from './createlog/createlog.component';
 })
 export class MoneyLogComponent extends PagedListingComponentBase<AccountLogDto>  {
   
-  @ViewChild('createAccountLogModal') createAccountLogModal: CreatelogComponent;
+
   @ViewChild('editAccountLogModal') editAccountLogModal: EditLogComponent;
 
    logs:AccountLogDto[]=[];
@@ -26,7 +26,7 @@ export class MoneyLogComponent extends PagedListingComponentBase<AccountLogDto> 
 }
 
 protected list(request: PagedRequestDto, pageNumber: number, finishedCallback: Function): void {
-  this._accountlogService.getAll(request.skipCount, request.maxResultCount)
+  this._accountlogService.getAllByAccountId(2,request.skipCount, request.maxResultCount)
       .pipe(finalize(() => {
           finishedCallback()
       }))
@@ -50,9 +50,7 @@ protected delete(log: AccountLogDto): void {
 );
 }
 
-createAccountLog():void {
-  this.createAccountLogModal.show();
-}
+
 
 editAccountLog(log:AccountLogDto):void{
   this.editAccountLogModal.show(log.id);

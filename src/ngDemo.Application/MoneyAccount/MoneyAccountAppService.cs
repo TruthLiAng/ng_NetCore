@@ -20,5 +20,14 @@ namespace ngDemo.MoneyAccount
         {
             _accountRepository = accountRepository;
         }
+
+        public async Task<Account> UpdateMoneyAsync(int id, int money)
+        {
+            var count = _accountRepository.Get(id);
+
+            count.Money += money;
+
+            return await _accountRepository.UpdateAsync(count);
+        }
     }
 }

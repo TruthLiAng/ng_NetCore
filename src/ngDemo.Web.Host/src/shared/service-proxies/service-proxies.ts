@@ -216,6 +216,64 @@ export class MoneyAccountServiceProxy {
 
     /**
      * @id (optional) 
+     * @money (optional) 
+     * @return Success
+     */
+    updateMoneyAsync(id: number | null | undefined, money: number | null | undefined): Observable<Account> {
+        let url_ = this.baseUrl + "/api/services/app/MoneyAccount/UpdateMoneyAsync?";
+        if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&"; 
+        if (money !== undefined)
+            url_ += "money=" + encodeURIComponent("" + money) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateMoneyAsync(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateMoneyAsync(<any>response_);
+                } catch (e) {
+                    return <Observable<Account>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<Account>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processUpdateMoneyAsync(response: HttpResponseBase): Observable<Account> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? Account.fromJS(resultData200) : new Account();
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<Account>(<any>null);
+    }
+
+    /**
+     * @id (optional) 
      * @return Success
      */
     get(id: number | null | undefined): Observable<AccountDto> {
@@ -444,7 +502,7 @@ export class MoneyAccountServiceProxy {
      * @return Success
      */
     delete(id: number | null | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/services/app/money-account/Delete?";
+        let url_ = this.baseUrl + "/api/services/app/MoneyAccount/Delete?";
         if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
@@ -500,6 +558,67 @@ export class MoneyAccountLogServiceProxy {
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
         this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    /**
+     * @accountId (optional) 
+     * @skipCount (optional) 
+     * @maxResultCount (optional) 
+     * @return Success
+     */
+    getAllByAccountId(accountId: number | null | undefined, skipCount: number | null | undefined, maxResultCount: number | null | undefined): Observable<PagedResultDtoOfAccountLogDto> {
+        let url_ = this.baseUrl + "/api/services/app/MoneyAccountLog/GetAllByAccountId?";
+        if (accountId !== undefined)
+            url_ += "accountId=" + encodeURIComponent("" + accountId) + "&"; 
+        if (skipCount !== undefined)
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+        if (maxResultCount !== undefined)
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllByAccountId(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllByAccountId(<any>response_);
+                } catch (e) {
+                    return <Observable<PagedResultDtoOfAccountLogDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PagedResultDtoOfAccountLogDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetAllByAccountId(response: HttpResponseBase): Observable<PagedResultDtoOfAccountLogDto> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PagedResultDtoOfAccountLogDto.fromJS(resultData200) : new PagedResultDtoOfAccountLogDto();
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PagedResultDtoOfAccountLogDto>(<any>null);
     }
 
     /**
@@ -2444,6 +2563,81 @@ export interface IChangeUiThemeInput {
     theme: string;
 }
 
+export class Account implements IAccount {
+    name: string | undefined;
+    money: number | undefined;
+    memo: string | undefined;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    lastModifierUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    isDeleted: boolean | undefined;
+    id: number | undefined;
+
+    constructor(data?: IAccount) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.name = data["name"];
+            this.money = data["money"];
+            this.memo = data["memo"];
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = data["creatorUserId"];
+            this.lastModifierUserId = data["lastModifierUserId"];
+            this.lastModificationTime = data["lastModificationTime"] ? moment(data["lastModificationTime"].toString()) : <any>undefined;
+            this.isDeleted = data["isDeleted"];
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): Account {
+        data = typeof data === 'object' ? data : {};
+        let result = new Account();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["money"] = this.money;
+        data["memo"] = this.memo;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
+        data["isDeleted"] = this.isDeleted;
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): Account {
+        const json = this.toJSON();
+        let result = new Account();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IAccount {
+    name: string | undefined;
+    money: number | undefined;
+    memo: string | undefined;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    lastModifierUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    isDeleted: boolean | undefined;
+    id: number | undefined;
+}
+
 export class AccountDto implements IAccountDto {
     name: string | undefined;
     money: number | undefined;
@@ -2574,81 +2768,6 @@ export interface IPagedResultDtoOfAccountDto {
     items: AccountDto[] | undefined;
 }
 
-export class AccountLogDto implements IAccountLogDto {
-    cause: string | undefined;
-    money: number | undefined;
-    memo: string | undefined;
-    creationTime: moment.Moment | undefined;
-    creatorUserId: number | undefined;
-    lastModifierUserId: number | undefined;
-    lastModificationTime: moment.Moment | undefined;
-    isDeleted: boolean | undefined;
-    id: number | undefined;
-
-    constructor(data?: IAccountLogDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.cause = data["cause"];
-            this.money = data["money"];
-            this.memo = data["memo"];
-            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
-            this.creatorUserId = data["creatorUserId"];
-            this.lastModifierUserId = data["lastModifierUserId"];
-            this.lastModificationTime = data["lastModificationTime"] ? moment(data["lastModificationTime"].toString()) : <any>undefined;
-            this.isDeleted = data["isDeleted"];
-            this.id = data["id"];
-        }
-    }
-
-    static fromJS(data: any): AccountLogDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new AccountLogDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["cause"] = this.cause;
-        data["money"] = this.money;
-        data["memo"] = this.memo;
-        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
-        data["creatorUserId"] = this.creatorUserId;
-        data["lastModifierUserId"] = this.lastModifierUserId;
-        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
-        data["isDeleted"] = this.isDeleted;
-        data["id"] = this.id;
-        return data; 
-    }
-
-    clone(): AccountLogDto {
-        const json = this.toJSON();
-        let result = new AccountLogDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IAccountLogDto {
-    cause: string | undefined;
-    money: number | undefined;
-    memo: string | undefined;
-    creationTime: moment.Moment | undefined;
-    creatorUserId: number | undefined;
-    lastModifierUserId: number | undefined;
-    lastModificationTime: moment.Moment | undefined;
-    isDeleted: boolean | undefined;
-    id: number | undefined;
-}
-
 export class PagedResultDtoOfAccountLogDto implements IPagedResultDtoOfAccountLogDto {
     totalCount: number | undefined;
     items: AccountLogDto[] | undefined;
@@ -2702,6 +2821,85 @@ export class PagedResultDtoOfAccountLogDto implements IPagedResultDtoOfAccountLo
 export interface IPagedResultDtoOfAccountLogDto {
     totalCount: number | undefined;
     items: AccountLogDto[] | undefined;
+}
+
+export class AccountLogDto implements IAccountLogDto {
+    accountId: number | undefined;
+    cause: string | undefined;
+    money: number | undefined;
+    memo: string | undefined;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    lastModifierUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    isDeleted: boolean | undefined;
+    id: number | undefined;
+
+    constructor(data?: IAccountLogDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.accountId = data["accountId"];
+            this.cause = data["cause"];
+            this.money = data["money"];
+            this.memo = data["memo"];
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = data["creatorUserId"];
+            this.lastModifierUserId = data["lastModifierUserId"];
+            this.lastModificationTime = data["lastModificationTime"] ? moment(data["lastModificationTime"].toString()) : <any>undefined;
+            this.isDeleted = data["isDeleted"];
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): AccountLogDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new AccountLogDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["accountId"] = this.accountId;
+        data["cause"] = this.cause;
+        data["money"] = this.money;
+        data["memo"] = this.memo;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
+        data["isDeleted"] = this.isDeleted;
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): AccountLogDto {
+        const json = this.toJSON();
+        let result = new AccountLogDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IAccountLogDto {
+    accountId: number | undefined;
+    cause: string | undefined;
+    money: number | undefined;
+    memo: string | undefined;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    lastModifierUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    isDeleted: boolean | undefined;
+    id: number | undefined;
 }
 
 export class CreateRoleDto implements ICreateRoleDto {

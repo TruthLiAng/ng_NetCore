@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Injector } from '@angular/core';
 import { AppComponentBase } from '@shared/app-component-base';
 import { ModalDirective } from 'ngx-bootstrap';
-import { AccountDto, MoneyAccountLogServiceProxy, AccountLogDto } from '@shared/service-proxies/service-proxies';
+import { MoneyAccountServiceProxy, MoneyAccountLogServiceProxy, AccountLogDto } from '@shared/service-proxies/service-proxies';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -18,17 +18,20 @@ export class CreatelogComponent extends AppComponentBase {
   active: boolean = false;
   saving: boolean = false;
   log: AccountLogDto = null;
+  accountId :number = 0;
 
   constructor(
       injector: Injector,
       private _accountLogService: MoneyAccountLogServiceProxy,
+      private _MoneyAccountService :MoneyAccountServiceProxy,
   ) {
       super(injector);
   }
 
-  show(): void {
+  show(accountId:number): void {
       this.active = true;
       this.modal.show();
+      this.accountId = accountId;
       this.log = new AccountLogDto();
   }
 
@@ -38,12 +41,16 @@ export class CreatelogComponent extends AppComponentBase {
 
   save(): void {
       this.saving = true;
+      this.log.accountId = this.accountId;
       this._accountLogService.create(this.log)
-          .pipe(finalize(() => { this.saving = false; }))
           .subscribe(() => {
+              this._MoneyAccountService.updateMoneyAsync(this.accountId,this.log.money)
+              .pipe(finalize(() => { this.saving = false; }))
+              .subscribe(() => {
               this.notify.info(this.l('SavedSuccessfully'));
               this.close();
               this.modalSave.emit(null);
+               });
           });
   }
 

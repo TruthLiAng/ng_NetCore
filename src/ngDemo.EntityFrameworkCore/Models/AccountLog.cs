@@ -6,8 +6,9 @@ using System.Text;
 
 namespace ngDemo.Models
 {
-    public class AccountLog :Entity, IHasCreationTime, IAudited, ISoftDelete
+    public class AccountLog : Entity, IHasCreationTime, IAudited, ISoftDelete
     {
+        public virtual int AccountId { get; set; }
         public virtual string Cause { get; set; }
 
         public virtual int Money { get; set; }
@@ -22,6 +23,6 @@ namespace ngDemo.Models
 
         public DateTime? LastModificationTime { get; set; }
 
-        public bool IsDeleted { get; set ; }
+        public bool IsDeleted { get; set; }
     }
 }

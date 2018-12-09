@@ -6,6 +6,7 @@ import { CreateAccountComponent } from 'app/money-account/create-account/create-
 import { EditAccountComponent } from 'app/money-account/edit-account/edit-account.component';
 import { MoneyLogComponent } from 'app/money-log/money-log.component';
 import { finalize } from 'rxjs/operators';
+import { CreatelogComponent } from '@app/money-log/createlog/createlog.component';
 
 @Component({
     templateUrl: './accounts.component.html',
@@ -15,6 +16,7 @@ export class AccountsComponent extends PagedListingComponentBase<AccountDto> {
     @ViewChild('createAccountModal') createAccountModal: CreateAccountComponent;
     @ViewChild('editAccountModal') editAccountModal: EditAccountComponent;
     @ViewChild('accountLogListModal') accountLogListModal: MoneyLogComponent;
+    @ViewChild('createAccountLogModal') createAccountLogModal: CreatelogComponent;
 
     active: boolean = false;
     accounts: AccountDto[] = [];
@@ -60,4 +62,8 @@ export class AccountsComponent extends PagedListingComponentBase<AccountDto> {
     editAccount(account: AccountDto): void {
         this.editAccountModal.show(account.id);
     }
+
+    createLog(account: AccountDto):void {
+        this.createAccountLogModal.show(account.id);
+      }
 }
