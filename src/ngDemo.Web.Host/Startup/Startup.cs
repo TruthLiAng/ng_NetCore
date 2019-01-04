@@ -1,5 +1,5 @@
 using System.IO;
-﻿using System;
+using System;
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
@@ -36,6 +36,9 @@ namespace ngDemo.Web.Host.Startup
             // MVC
             services.AddMvc(
                 options => options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName))
+            );
+            services.AddMvc(
+                options => options.Filters.Add(new ExceptionAttribute())
             );
 
             IdentityRegistrar.Register(services);
@@ -92,13 +95,39 @@ namespace ngDemo.Web.Host.Startup
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
-app.Use(async (context, next) =>                {                    await next();                    if (context.Response.StatusCode == 404                        && !Path.HasExtension(context.Request.Path.Value))                    {                        context.Request.Path = "/index.html";                        await next();                    }                });
+            app.Use(async (context, next) =>
+            {
+                //if (!context.Request.Path.ToString().StartsWith("/api/passport"))
+                //{
+                //    var _token = "";
+                //    if (context.Request.Headers.TryGetValue("token", out var tokens) && tokens.Count > 0)
+                //    {
+                //        _token = tokens[0];
+                //    }
+                //    if (_token != "asdf")
+                //    {
+                //        context.Response.StatusCode = 401;
+                //        return;
+                //    }
+
+                //    var user = new User();
+                //    user.Id = 1;
+                //    user.Name = "cipchk";
+                //    context.Items.Add("token", _token);
+                //    context.Items.Add("user", user);
+                //}
+                await next();
+                if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
+                {
+                    context.Request.Path = "/index.html";
+                    await next();
+                }
+            });
             app.UseStaticFiles();
 
             app.UseAuthentication();
 
             app.UseAbpRequestLocalization();
-
 
             app.UseSignalR(routes =>
             {
