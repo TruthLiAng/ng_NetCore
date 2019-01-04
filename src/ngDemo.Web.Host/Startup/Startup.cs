@@ -97,25 +97,19 @@ namespace ngDemo.Web.Host.Startup
 
             app.Use(async (context, next) =>
             {
-                //if (!context.Request.Path.ToString().StartsWith("/api/passport"))
-                //{
-                //    var _token = "";
-                //    if (context.Request.Headers.TryGetValue("token", out var tokens) && tokens.Count > 0)
-                //    {
-                //        _token = tokens[0];
-                //    }
-                //    if (_token != "asdf")
-                //    {
-                //        context.Response.StatusCode = 401;
-                //        return;
-                //    }
-
-                //    var user = new User();
-                //    user.Id = 1;
-                //    user.Name = "cipchk";
-                //    context.Items.Add("token", _token);
-                //    context.Items.Add("user", user);
-                //}
+                if (context.Request.Path.ToString().StartsWith("/api/startup"))
+                {
+                    var _token = "";
+                    if (context.Request.Headers.TryGetValue("token", out var tokens) && tokens.Count > 0)
+                    {
+                        _token = tokens[0];
+                    }
+                    else
+                    {
+                        context.Response.StatusCode = 401;
+                        return;
+                    }
+                }
                 await next();
                 if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
                 {

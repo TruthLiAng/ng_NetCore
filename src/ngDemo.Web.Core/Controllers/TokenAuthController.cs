@@ -188,6 +188,7 @@ namespace ngDemo.Controllers
             {
                 case AbpLoginResultType.Success:
                     return loginResult;
+
                 default:
                     throw _abpLoginResultTypeHelper.CreateExceptionForFailedLoginAttempt(loginResult.Result, usernameOrEmailAddress, tenancyName);
             }

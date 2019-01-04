@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
+import { NgModule, LOCALE_ID, APP_INITIALIZER, Injector } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -89,6 +89,7 @@ const INTERCEPTOR_PROVIDES = [
 // #region Startup Service
 import { StartupService } from '@core/startup/startup.service';
 export function StartupServiceFactory(
+  injector:Injector,
   startupService: StartupService,
 ): Function {
   return () => startupService.load();
@@ -98,7 +99,7 @@ const APPINIT_PROVIDES = [
   {
     provide: APP_INITIALIZER,
     useFactory: StartupServiceFactory,
-    deps: [StartupService],
+    deps: [Injector,StartupService],
     multi: true,
   },
 ];
