@@ -17,6 +17,8 @@ using ngDemo.Authorization;
 using ngDemo.Authorization.Users;
 using ngDemo.Models.TokenAuth;
 using ngDemo.MultiTenancy;
+using System.IO;
+using System.Text;
 
 namespace ngDemo.Controllers
 {
@@ -229,6 +231,38 @@ namespace ngDemo.Controllers
         private string GetEncrpyedAccessToken(string accessToken)
         {
             return SimpleStringCipher.Instance.Encrypt(accessToken, AppConsts.DefaultPassPhrase);
+        }
+
+        private string path = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/";
+
+        /// <summary>
+        /// 读取txt文件内容
+        /// </summary>
+        /// <param name="Path">文件地址</param>
+        private string ReadJsonContent(string Path)
+        {
+            StreamReader sr = new StreamReader(Path, Encoding.Default);
+            string res = "";
+            string content;
+            while ((content = sr.ReadLine()) != null)
+            {
+                res += content;
+            }
+            return res;
+        }
+
+        [HttpGet]
+        public string GetLangData(string type)
+        {
+            string i18nPath = path + "i18n/" + type + ".json";
+            return ReadJsonContent(i18nPath);
+        }
+
+        [HttpGet]
+        public string GetAppData()
+        {
+            string appdataPath = path + "app-data.json";
+            return ReadJsonContent(appdataPath);
         }
     }
 }
