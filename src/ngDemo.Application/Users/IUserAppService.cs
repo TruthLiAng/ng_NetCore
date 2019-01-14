@@ -13,5 +13,7 @@ namespace ngDemo.Users
         Task ChangeLanguage(ChangeUserLanguageDto input);
 
         Task<string> GetNameAsync();
+
+        Task<ListResultDto<UserDto>> GetAllUsersAsync(int? pi, int? ps);
     }
 }

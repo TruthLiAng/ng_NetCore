@@ -59,6 +59,26 @@
       ]
     },
     {
+      "text": "用户管理",
+      "i18n": "menu.user",
+      "group": true,
+      "hideInBreadcrumb": true,
+      "children": [
+        {
+          "text": "用户管理",
+          "i18n": "menu.userManage",
+          "link": "/user/list",
+          "icon": "anticon anticon-user"
+        },
+        {
+          "text": "角色管理",
+          "i18n": "menu.roleManage",
+          "link": "/role/list",
+          "icon": "anticon anticon-role"
+        }
+      ]
+    },
+    {
       "text": "Alain",
       "i18n": "menu.alain",
       "group": true,

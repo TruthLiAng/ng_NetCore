@@ -162,5 +162,17 @@ namespace ngDemo.Users
             }
             return res;
         }
+
+        public async Task<ListResultDto<UserDto>> GetAllUsersAsync(int? pi, int? ps)
+        {
+            PagedResultRequestDto requestDto = new PagedResultRequestDto();
+            if (pi.HasValue && ps.HasValue)
+            {
+                requestDto.SkipCount = (pi.Value - 1) * ps.Value;
+                requestDto.MaxResultCount = ps.Value;
+            }
+
+            return await base.GetAll(requestDto);
+        }
     }
 }

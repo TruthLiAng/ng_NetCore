@@ -101,4 +101,5 @@
   <PropertyGroup>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1Staging_1json__JSONSchema="" App_3Data_4app-data_1json__JSONSchema="http://json.schemastore.org/2.0.0-csd.2.beta.2018-10-10.json" /></VisualStudio></ProjectExtensions>
 </Project>

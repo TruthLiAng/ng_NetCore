@@ -63,6 +63,9 @@ export class UserLoginComponent implements OnDestroy {
   get captcha() {
     return this.form.controls.captcha;
   }
+  get remember() {
+    return this.form.controls.remember;
+  }
 
   // #endregion
 
@@ -113,7 +116,7 @@ export class UserLoginComponent implements OnDestroy {
         //type: this.type,
         UserNameOrEmailAddress: this.userName.value,
         Password: this.password.value,
-        RememberClient:false
+        RememberClient: this.remember.value,
       })
       .subscribe((res: any) => {
         if (res.success !== true) {
@@ -127,9 +130,8 @@ export class UserLoginComponent implements OnDestroy {
         tokenModel.token = res.result.accessToken;
         this.tokenService.set(tokenModel);
         // 重新获取 StartupService 内容，我们始终认为应用信息一般都会受当前用户授权范围而影响
-        this.startupSrv.load().then(
-          () => this.router.navigate(['/'])
-          );
+        this.startupSrv.initApp();
+        this.startupSrv.load().then(() => this.router.navigate(['/']));
       });
   }
 
