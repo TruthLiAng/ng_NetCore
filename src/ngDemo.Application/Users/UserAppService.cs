@@ -45,6 +45,11 @@ namespace ngDemo.Users
         {
             CheckCreatePermission();
 
+            if (string.IsNullOrEmpty(input.Password))
+            {
+                input.Password = ngDemoConsts.DefaultPassword;
+            }
+
             var user = ObjectMapper.Map<User>(input);
 
             user.TenantId = AbpSession.TenantId;

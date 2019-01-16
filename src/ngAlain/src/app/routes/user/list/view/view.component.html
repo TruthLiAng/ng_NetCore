@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <div class="modal-title">查看 {{ record.name + record.surname }} 信息</div>
+</div>
+<nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
+<div sv-container *ngIf="i">
+  <sv label="姓名">{{ i.name + record.surname }}</sv>
+  <sv label="邮箱">{{i.emailAddress}}</sv>
+  <sv label="是否启用"><sf #status [schema]="statuSchema" [formData]="i" [layout]='inline' [button]='none'></sf></sv>
+  <sv label="联系方式">18112345678</sv>
+  <sv label="联系地址">曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口</sv>
+</div>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+</div>

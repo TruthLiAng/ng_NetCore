@@ -74,7 +74,7 @@
           "text": "角色管理",
           "i18n": "menu.roleManage",
           "link": "/role/list",
-          "icon": "anticon anticon-role"
+          "icon": "anticon anticon-smile"
         }
       ]
     },
