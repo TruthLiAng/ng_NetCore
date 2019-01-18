@@ -16,6 +16,7 @@ import { I18NService } from '../i18n/i18n.service';
 import { NzIconService, NzMessageService } from 'ng-zorro-antd';
 import { ICONS_AUTO } from '../../../style-icons-auto';
 import { ICONS } from '../../../style-icons';
+import { CacheService } from '@delon/cache';
 
 /**
  * 用于应用启动时
@@ -33,6 +34,7 @@ export class StartupService {
     private aclService: ACLService,
     private titleService: TitleService,
     private httpClient: HttpClient,
+    private cacheService: CacheService,
   ) {
     iconSrv.addIcon(...ICONS_AUTO, ...ICONS);
   }
@@ -48,8 +50,7 @@ export class StartupService {
           }`,
         ),
         this.httpClient.get('AppData/GetAppData?_allow_anonymous=true'),
-      )
-        .pipe(
+      ).pipe(
           // 接收其他拦截器后产生的异常消息
           catchError(([langData, appData], err) => {
             resolve(null);
@@ -97,14 +98,32 @@ export class StartupService {
             return;
           }
 
-          const sessionData = JSON.parse(res.result);
+          const sessionData = res.result;
 
-          var user: User;
-          user.name = sessionData.user.name;
-          user.email = sessionData.user.emailAddress;
+          let user = { name: sessionData.user.name, email: sessionData.user.emailAddress};
 
           this.settingService.setUser(user);
+
+          resolve(user);
         });
+    }).then((user:User)=>{
+      if (user.email.length > 0) {
+        zip(
+          this.httpClient.get('services/app/User/GetRoles'),
+          this.httpClient.get('services/app/Role/GetAllPermissions'),
+        ).pipe(
+          // 接收其他拦截器后产生的异常消息
+          catchError(([roleData, permissionData], err) => {
+            //console.debug(err);
+            return [roleData, permissionData];
+            //return [err,err];
+          }),
+        ).subscribe(([roleData, permissionData])=>{
+
+          this.cacheService.set('rolesData',roleData.result);
+          this.cacheService.set('permissonsData',permissionData.result);
+        })
+      }
     });
   }
 }

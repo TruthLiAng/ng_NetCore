@@ -1,7 +1,7 @@
 <div class="modal-header">
   <div class="modal-title">
     <span>
-      <ng-container *ngIf="record.id == 0; else elseTemplate">
+      <ng-container *ngIf="isAddView; else elseTemplate">
         新增用户
       </ng-container>
       <ng-template #elseTemplate> 编辑用户 </ng-template>

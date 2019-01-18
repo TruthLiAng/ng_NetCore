@@ -1,14 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { _HttpClient, ModalHelper } from '@delon/theme';
-import { STColumn, STComponent } from '@delon/abc';
+import { STColumn, STComponent, STColumnTag, STRes } from '@delon/abc';
 import { SFSchema } from '@delon/form';
+import { RoleListEditComponent } from './edit/edit.component';
+import { RoleListViewComponent } from './view/view.component';
 
 @Component({
   selector: 'role-list',
   templateUrl: './list.component.html',
 })
 export class RoleListComponent implements OnInit {
-  url = `/user`;
+  url = `services/app/Role/GetAllRolesAsync`;
   searchSchema: SFSchema = {
     properties: {
       no: {
@@ -18,18 +20,33 @@ export class RoleListComponent implements OnInit {
     }
   };
   @ViewChild('st') st: STComponent;
+
+  res: STRes = {
+    reName: { total: 'result.totalCount', list: 'result.items' },
+  };
+
   columns: STColumn[] = [
-    { title: '编号', index: 'no' },
-    { title: '调用次数', type: 'number', index: 'callNo' },
-    { title: '头像', type: 'img', width: '50px', index: 'avatar' },
-    { title: '时间', type: 'date', index: 'updatedAt' },
+    { title: '编号', type:'no', index: 'no' },
+    { title: '角色标志', index: 'name' },
+    { title: '角色名', index: 'displayName' },
+    { title: '系统标志', index: 'normalizedName' },
+    { title: '描述', index: 'description' },
     {
       title: '',
       buttons: [
-        // { text: '查看', click: (item: any) => `/form/${item.id}` },
-        // { text: '编辑', type: 'static', component: FormEditComponent, click: 'reload' },
-      ]
-    }
+        {
+          text: '查看',
+          type: 'static',
+          modal: { component: RoleListViewComponent, paramsName: 'record' },
+        },
+        {
+          text: '编辑',
+          type: 'static',
+          modal: { component: RoleListEditComponent, paramsName: 'record' },
+          click: 'reload',
+        },
+      ],
+    },
   ];
 
   constructor(private http: _HttpClient, private modal: ModalHelper) { }
@@ -37,9 +54,9 @@ export class RoleListComponent implements OnInit {
   ngOnInit() { }
 
   add() {
-    // this.modal
-    //   .createStatic(FormEditComponent, { i: { id: 0 } })
-    //   .subscribe(() => this.st.reload());
+    this.modal
+      .createStatic(RoleListEditComponent, { i: { id: 0 } })
+      .subscribe(() => this.st.reload());
   }
 
 }

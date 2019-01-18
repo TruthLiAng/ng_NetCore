@@ -12,5 +12,7 @@ namespace ngDemo.Roles
         Task<GetRoleForEditOutput> GetRoleForEdit(EntityDto input);
 
         Task<ListResultDto<RoleListDto>> GetRolesAsync(GetRolesInput input);
+
+        Task<ListResultDto<RoleDto>> GetAllRolesAsync(int? pi, int? ps);
     }
 }

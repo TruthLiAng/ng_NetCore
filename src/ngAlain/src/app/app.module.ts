@@ -111,6 +111,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { RoutesModule } from './routes/routes.module';
 import { LayoutModule } from './layout/layout.module';
+import { DelonCacheModule } from '@delon/cache';
 
 @NgModule({
   declarations: [AppComponent],
@@ -119,6 +120,7 @@ import { LayoutModule } from './layout/layout.module';
     BrowserAnimationsModule,
     HttpClientModule,
     DelonModule.forRoot(),
+    DelonCacheModule,
     CoreModule,
     SharedModule,
     LayoutModule,

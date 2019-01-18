@@ -1,23 +1,26 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { _HttpClient, ModalHelper } from '@delon/theme';
-import { STColumn, STComponent, STReq, STRes, STColumnTag } from '@delon/abc';
-import { SFSchema } from '@delon/form';
+import {
+  STColumn,
+  STComponent,
+  STReq,
+  STRes,
+  STColumnTag,
+  STColumnTagValue,
+  STData,
+} from '@delon/abc';
+import { SFSchema, SFSchemaEnum } from '@delon/form';
 import { UserListEditComponent } from './edit/edit.component';
 import { UserListViewComponent } from './view/view.component';
-
-const TAG: STColumnTag = {
-  ADMIN: { text: 'Admin', color: 'green' },
-  2: { text: '一般', color: 'red' },
-  3: { text: '进行中', color: 'blue' },
-  4: { text: '默认', color: 'cyan' },
-  5: { text: '警告', color: 'orange' },
-};
+import { CacheService } from '@delon/cache';
 
 @Component({
   selector: 'user-list',
   templateUrl: './list.component.html',
 })
 export class UserListComponent implements OnInit {
+  TAG: STColumnTag = {};
+
   url = `services/app/User/GetAllUsersAsync`;
 
   searchSchema: SFSchema = {
@@ -32,6 +35,23 @@ export class UserListComponent implements OnInit {
 
   res: STRes = {
     reName: { total: 'result.totalCount', list: 'result.items' },
+    process: (data: STData[]) => {
+      let roleData = this.cacheService.getNone<any>('rolesData');
+
+      for (let index = 0; index < data.length; index++) {
+        const row = data[index].roleNames;
+        for (let r = 0; r < row.length; r++) {
+          const role_Names = row[r];
+          for (let ro = 0; ro < roleData.items.length; ro++) {
+            const roles = roleData.items[ro];
+            if (role_Names === roles.normalizedName) {
+              data[index].roleNames[r] = roles.displayName;
+            }
+          }
+        }
+      }
+      return data;
+    },
   };
 
   columns: STColumn[] = [
@@ -40,7 +60,7 @@ export class UserListComponent implements OnInit {
     { title: '邮箱', index: 'emailAddress' },
     { title: '是否启用', type: 'yn', index: 'isActive' },
     { title: '上次登录时间', type: 'date', index: 'lastLoginTime' },
-    { title: '角色', type: 'tag', index: 'roleNames', tag: TAG },
+    { title: '角色', render: 'custom' },
     {
       title: '',
       buttons: [
@@ -59,9 +79,14 @@ export class UserListComponent implements OnInit {
     },
   ];
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) {}
+  constructor(
+    private http: _HttpClient,
+    private modal: ModalHelper,
+    private cacheService: CacheService,
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   add() {
     this.modal

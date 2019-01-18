@@ -1,8 +1,15 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
-import { SFSchema, SFUISchema, FormProperty, PropertyGroup } from '@delon/form';
+import {
+  SFSchema,
+  SFUISchema,
+  FormProperty,
+  PropertyGroup,
+  SFSchemaEnum,
+} from '@delon/form';
 import { format } from 'path';
+import { CacheService } from '@delon/cache';
 
 @Component({
   selector: 'user-list-edit',
@@ -11,10 +18,12 @@ import { format } from 'path';
 export class UserListEditComponent implements OnInit {
   record: any = {};
 
+  enums: SFSchemaEnum[] = [];
   i: any;
+  isAddView: boolean = true;
   schema: SFSchema = {
     properties: {
-      id:{type :'integer', title:'id', ui:{hidden:true}},
+      id: { type: 'integer', title: 'id', ui: { hidden: true } },
       userName: {
         type: 'string',
         title: '账户名',
@@ -39,7 +48,7 @@ export class UserListEditComponent implements OnInit {
         title: '密码',
         ui: {
           visibleIf: {
-            id: (value: any) => value == 0
+            id: (value: any) => value == 0,
           },
         },
       },
@@ -47,11 +56,7 @@ export class UserListEditComponent implements OnInit {
       roleNames: {
         title: '角色',
         type: 'string',
-        enum: [
-          { label: '管理员', value: 'ADMIN' },
-          { label: '一般', value: 'Normal' },
-          { label: '队长', value: 'Master' },
-        ],
+        enum: this.enums,
         ui: {
           widget: 'select',
           mode: 'tags',
@@ -89,18 +94,34 @@ export class UserListEditComponent implements OnInit {
     private modal: NzModalRef,
     private msgSrv: NzMessageService,
     public http: _HttpClient,
+    private cacheService: CacheService,
   ) {}
 
   ngOnInit(): void {
-    if (this.record.id != null)
-      this.http
-        .get(`services/app/User/Get?Id=${this.record.id}`)
-        .subscribe((res: any) => {
-          if (res.success !== true) {
-            return;
-          }
-          this.i = res.result;
-        });
+    this.getTagData();
+
+    if (this.record.id != null) this.isAddView = false;
+    this.http
+      .get(`services/app/User/Get?Id=${this.record.id}`)
+      .subscribe((res: any) => {
+        if (res.success !== true) {
+          return;
+        }
+        this.i = res.result;
+      });
+  }
+
+  getTagData() {
+    let roleData = this.cacheService.getNone<any>('rolesData');
+
+    roleData.items.forEach(ele => {
+      let enumValue: SFSchemaEnum = {
+        label: ele.displayName,
+        value: ele.normalizedName,
+      };
+
+      this.enums.push(enumValue);
+    });
   }
 
   save(value: any) {
