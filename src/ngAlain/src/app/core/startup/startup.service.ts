@@ -61,8 +61,8 @@ export class StartupService {
         )
         .subscribe(
           ([langStrData, appStrData]) => {
-            const langData = JSON.parse(langStrData.result);
-            const appData = JSON.parse(appStrData.result);
+            const langData = JSON.parse(langStrData);
+            const appData = JSON.parse(appStrData);
 
             // setting language data
             this.translate.setTranslation(this.i18n.defaultLang, langData);
@@ -94,11 +94,8 @@ export class StartupService {
       this.httpClient
         .get('services/app/Session/GetCurrentLoginInformations')
         .subscribe((res: any) => {
-          if (res.success !== true) {
-            return;
-          }
 
-          const sessionData = res.result;
+          const sessionData = res;
 
           let user = { name: sessionData.user.name, email: sessionData.user.emailAddress};
 
@@ -120,8 +117,8 @@ export class StartupService {
           }),
         ).subscribe(([roleData, permissionData])=>{
 
-          this.cacheService.set('rolesData',roleData.result);
-          this.cacheService.set('permissonsData',permissionData.result);
+          this.cacheService.set('rolesData',roleData);
+          this.cacheService.set('permissonsData',permissionData);
         })
       }
     });

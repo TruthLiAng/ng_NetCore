@@ -100,15 +100,15 @@ export class UserListEditComponent implements OnInit {
   ngOnInit(): void {
     this.getTagData();
 
-    if (this.record.id != null) this.isAddView = false;
-    this.http
-      .get(`services/app/User/Get?Id=${this.record.id}`)
-      .subscribe((res: any) => {
-        if (res.success !== true) {
-          return;
-        }
-        this.i = res.result;
-      });
+    if (this.record.id != null)
+    {
+      this.isAddView = false;
+      this.http
+        .get(`services/app/User/Get?Id=${this.record.id}`)
+        .subscribe((res: any) => {
+          this.i = res;
+        });
+    }
   }
 
   getTagData() {

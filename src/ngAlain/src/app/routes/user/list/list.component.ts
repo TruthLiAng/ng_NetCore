@@ -34,7 +34,7 @@ export class UserListComponent implements OnInit {
   @ViewChild('st') st: STComponent;
 
   res: STRes = {
-    reName: { total: 'result.totalCount', list: 'result.items' },
+    reName: { total: 'totalCount', list: 'items' },
     process: (data: STData[]) => {
       let roleData = this.cacheService.getNone<any>('rolesData');
 

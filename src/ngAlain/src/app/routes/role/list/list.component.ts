@@ -22,7 +22,7 @@ export class RoleListComponent implements OnInit {
   @ViewChild('st') st: STComponent;
 
   res: STRes = {
-    reName: { total: 'result.totalCount', list: 'result.items' },
+    reName: { total: 'totalCount', list: 'items' },
   };
 
   columns: STColumn[] = [

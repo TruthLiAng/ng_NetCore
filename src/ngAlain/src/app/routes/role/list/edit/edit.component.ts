@@ -49,15 +49,14 @@ export class RoleListEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.record.id != null)
+    {
       this.isAddView = false;
       this.http
         .get(`services/app/Role/Get?Id=${this.record.id}`)
         .subscribe((res: any) => {
-          if (res.success !== true) {
-            return;
-          }
-          this.i = res.result;
+          this.i = res;
         });
+    }
   }
 
   save(value: any) {

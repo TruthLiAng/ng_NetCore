@@ -33,10 +33,7 @@ export class UserListViewComponent implements OnInit {
     this.http
       .get(`services/app/User/Get?Id=${this.record.id}`)
       .subscribe((res: any) => {
-        if (res.success !== true) {
-          return;
-        }
-        this.i = res.result;
+        this.i = res;
       });
   }
 
