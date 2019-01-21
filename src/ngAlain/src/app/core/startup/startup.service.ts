@@ -50,7 +50,8 @@ export class StartupService {
           }`,
         ),
         this.httpClient.get('AppData/GetAppData?_allow_anonymous=true'),
-      ).pipe(
+      )
+        .pipe(
           // 接收其他拦截器后产生的异常消息
           catchError(([langData, appData], err) => {
             resolve(null);
@@ -74,8 +75,7 @@ export class StartupService {
             this.settingService.setApp(res.app);
             // 用户信息：包括姓名、头像、邮箱地址
             this.settingService.setUser(res.user);
-            // ACL：设置权限为全量
-            this.aclService.setFull(true);
+
             // 初始化菜单
             this.menuService.add(res.menu);
             // 设置页面标题的后缀
@@ -94,33 +94,37 @@ export class StartupService {
       this.httpClient
         .get('services/app/Session/GetCurrentLoginInformations')
         .subscribe((res: any) => {
-
           const sessionData = res;
 
-          let user = { name: sessionData.user.name, email: sessionData.user.emailAddress};
+          let user = {
+            name: sessionData.user.name,
+            email: sessionData.user.emailAddress,
+          };
 
           this.settingService.setUser(user);
 
-          resolve(user);
+          // ACL：设置登录用户角色权限
+          this.aclService.setRole(sessionData.roleNames);
+
+          resolve(sessionData.roleNames);
         });
-    }).then((user:User)=>{
-      if (user.email.length > 0) {
-        zip(
-          this.httpClient.get('services/app/User/GetRoles'),
-          this.httpClient.get('services/app/Role/GetAllPermissions'),
-        ).pipe(
+    }).then((roleNames: string[]) => {
+      zip(
+        this.httpClient.get('services/app/Configuration/GetRoles'),
+        this.httpClient.get('services/app/Configuration/GetAllPermissions'),
+      )
+        .pipe(
           // 接收其他拦截器后产生的异常消息
           catchError(([roleData, permissionData], err) => {
             //console.debug(err);
             return [roleData, permissionData];
             //return [err,err];
           }),
-        ).subscribe(([roleData, permissionData])=>{
-
-          this.cacheService.set('rolesData',roleData);
-          this.cacheService.set('permissonsData',permissionData);
-        })
-      }
+        )
+        .subscribe(([roleData, permissionData]) => {
+          this.cacheService.set('rolesData', roleData);
+          this.cacheService.set('permissonsData', permissionData);
+        });
     });
   }
 }

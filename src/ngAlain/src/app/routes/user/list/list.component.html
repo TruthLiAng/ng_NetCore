@@ -6,7 +6,7 @@
     (formSubmit)="st.reset($event)"
     (formReset)="st.reset($event)"
   ></sf>
-  <button (click)="add()" nz-button nzType="primary">
+  <button (click)="add()" [acl]="['Admin']" nz-button nzType="primary">
     <i nz-icon type="plus"></i> <span>新建</span>
   </button>
   <st #st [data]="url" [res]="res" [columns]="columns">

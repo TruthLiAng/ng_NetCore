@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Abp.Auditing;
 using ngDemo.Sessions.Dto;
@@ -27,7 +28,9 @@ namespace ngDemo.Sessions
 
             if (AbpSession.UserId.HasValue)
             {
-                output.User = ObjectMapper.Map<UserLoginInfoDto>(await GetCurrentUserAsync());
+                var user = await GetCurrentUserAsync();
+                output.User = ObjectMapper.Map<UserLoginInfoDto>(user);
+                output.RoleNames = (await GetCurrentRoleAsync(user)).ToArray();
             }
 
             return output;

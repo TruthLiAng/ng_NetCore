@@ -71,7 +71,15 @@ export class DefaultInterceptor implements HttpInterceptor {
       case 403:
       case 404:
       case 500:
-        this.goTo(`/${event.status}`);
+      if (event instanceof HttpErrorResponse){
+        const body: any = event.error;
+        const url: string = event.url;
+        if (url.includes('api/TokenAuth/Authenticate')) {
+          this.msg.error('登录失败，请检查用户名和密码。');
+        } else {
+          this.goTo(`/${event.status}`);
+        }
+      }
         break;
       default:
         if (event instanceof HttpErrorResponse) {
