@@ -4,6 +4,7 @@ import { STColumn, STComponent, STColumnTag, STRes } from '@delon/abc';
 import { SFSchema } from '@delon/form';
 import { RoleListEditComponent } from './edit/edit.component';
 import { RoleListViewComponent } from './view/view.component';
+import { ACLType } from '@delon/acl';
 
 @Component({
   selector: 'role-list',
@@ -15,9 +16,9 @@ export class RoleListComponent implements OnInit {
     properties: {
       no: {
         type: 'string',
-        title: '编号'
-      }
-    }
+        title: '编号',
+      },
+    },
   };
   @ViewChild('st') st: STComponent;
 
@@ -26,7 +27,7 @@ export class RoleListComponent implements OnInit {
   };
 
   columns: STColumn[] = [
-    { title: '编号', type:'no', index: 'no' },
+    { title: '编号', type: 'no', index: 'no' },
     { title: '角色标志', index: 'name' },
     { title: '角色名', index: 'displayName' },
     { title: '系统标志', index: 'normalizedName' },
@@ -42,6 +43,7 @@ export class RoleListComponent implements OnInit {
         {
           text: '编辑',
           type: 'static',
+          acl: <ACLType>{ role: ['Admin'] },
           modal: { component: RoleListEditComponent, paramsName: 'record' },
           click: 'reload',
         },
@@ -49,14 +51,13 @@ export class RoleListComponent implements OnInit {
     },
   ];
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) { }
+  constructor(private http: _HttpClient, private modal: ModalHelper) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   add() {
     this.modal
       .createStatic(RoleListEditComponent, { i: { id: 0 } })
       .subscribe(() => this.st.reload());
   }
-
 }

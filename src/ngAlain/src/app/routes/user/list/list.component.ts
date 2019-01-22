@@ -13,6 +13,7 @@ import { SFSchema, SFSchemaEnum } from '@delon/form';
 import { UserListEditComponent } from './edit/edit.component';
 import { UserListViewComponent } from './view/view.component';
 import { CacheService } from '@delon/cache';
+import { ACLType } from '@delon/acl';
 
 @Component({
   selector: 'user-list',
@@ -72,6 +73,7 @@ export class UserListComponent implements OnInit {
         {
           text: '编辑',
           type: 'static',
+          acl: <ACLType>{ role: ['Admin', 'User'] },
           modal: { component: UserListEditComponent, paramsName: 'record' },
           click: 'reload',
         },
@@ -85,8 +87,7 @@ export class UserListComponent implements OnInit {
     private cacheService: CacheService,
   ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   add() {
     this.modal
