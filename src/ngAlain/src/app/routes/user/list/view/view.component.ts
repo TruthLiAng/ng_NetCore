@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
-import { SFSchema } from '@delon/form';
+import { SFSchema, SFUISchema } from '@delon/form';
 import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
@@ -22,6 +22,12 @@ export class UserListViewComponent implements OnInit {
     },
     required: [],
   };
+
+  ui:SFUISchema ={
+    $isActive:{
+      widget:'boolean'
+    }
+  }
 
   constructor(
     private modal: NzModalRef,

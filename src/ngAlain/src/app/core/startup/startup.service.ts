@@ -86,6 +86,8 @@ export class StartupService {
             resolve(null);
           },
         );
+    }).then(() => {
+      this.initApp();
     });
   }
 
