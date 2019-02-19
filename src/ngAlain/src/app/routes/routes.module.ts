@@ -7,6 +7,9 @@ import { DashboardV1Component } from './dashboard/v1/v1.component';
 import { DashboardAnalysisComponent } from './dashboard/analysis/analysis.component';
 import { DashboardMonitorComponent } from './dashboard/monitor/monitor.component';
 import { DashboardWorkplaceComponent } from './dashboard/workplace/workplace.component';
+//pay pages
+import { PayAlipayComponent } from './pay/alipay/alipay.component';
+import { PayWechatpayComponent } from './pay/wechatpay/wechatpay.component';
 // passport pages
 import { UserLoginComponent } from './passport/login/login.component';
 import { UserRegisterComponent } from './passport/register/register.component';
@@ -23,6 +26,9 @@ const COMPONENTS = [
   DashboardAnalysisComponent,
   DashboardMonitorComponent,
   DashboardWorkplaceComponent,
+  //pay pages
+  PayAlipayComponent,
+  PayWechatpayComponent,
   // passport pages
   UserLoginComponent,
   UserRegisterComponent,
@@ -32,13 +38,13 @@ const COMPONENTS = [
   CallbackComponent,
   Exception403Component,
   Exception404Component,
-  Exception500Component
+  Exception500Component,
 ];
 const COMPONENTS_NOROUNT = [];
 
 @NgModule({
   imports: [SharedModule, RouteRoutingModule],
   declarations: [...COMPONENTS, ...COMPONENTS_NOROUNT],
-  entryComponents: COMPONENTS_NOROUNT
+  entryComponents: COMPONENTS_NOROUNT,
 })
 export class RoutesModule {}

@@ -1,0 +1,23 @@
+<page-header></page-header>
+<nz-card>
+  <nz-card-tab>
+    <nz-tabset nzSize="large" (nzSelectChange)="change($event)">
+      <nz-tab nzTitle="下单">
+        <nz-card [nzBordered]="false" nzTitle="操作">
+          <button nz-button (click)="pay()">下单</button>
+        </nz-card>
+      </nz-tab>
+      <nz-tab nzTitle="查询">
+        <nz-card [nzBordered]="false" nzTitle="操作">
+          <button nz-button (click)="query()">查询</button>
+        </nz-card></nz-tab
+      >
+      <nz-tab nzTitle="退款">
+        <nz-card [nzBordered]="false" nzTitle="操作">
+          <button nz-button (click)="pay()">下单</button>
+        </nz-card>
+      </nz-tab>
+    </nz-tabset>
+  </nz-card-tab>
+  <sf [schema]="schema"></sf>
+</nz-card>

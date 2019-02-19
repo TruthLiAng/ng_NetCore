@@ -79,6 +79,26 @@
       ]
     },
     {
+      "text": "支付展示",
+      "i18n": "menu.pay",
+      "group": true,
+      "hideInBreadcrumb": true,
+      "children": [
+        {
+          "text": "支付宝",
+          "i18n": "menu.AliPay",
+          "link": "/pay/alipay",
+          "icon": "anticon anticon-alipay-circle"
+        },
+        {
+          "text": "微信",
+          "i18n": "menu.WechatPay",
+          "link": "/pay/wechatpay",
+          "icon": "anticon anticon-pay-circle"
+        }
+      ]
+    },
+    {
       "text": "Alain",
       "i18n": "menu.alain",
       "group": true,

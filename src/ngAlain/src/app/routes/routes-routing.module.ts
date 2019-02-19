@@ -11,6 +11,9 @@ import { DashboardV1Component } from './dashboard/v1/v1.component';
 import { DashboardAnalysisComponent } from './dashboard/analysis/analysis.component';
 import { DashboardMonitorComponent } from './dashboard/monitor/monitor.component';
 import { DashboardWorkplaceComponent } from './dashboard/workplace/workplace.component';
+//pay pages
+import { PayAlipayComponent } from './pay/alipay/alipay.component';
+import { PayWechatpayComponent } from './pay/wechatpay/wechatpay.component';
 // passport pages
 import { UserLoginComponent } from './passport/login/login.component';
 import { UserRegisterComponent } from './passport/register/register.component';
@@ -55,6 +58,8 @@ const routes: Routes = [
         canActivate: [ACLGuard],
         data: { guard: <ACLType>{ role: ['Admin', 'Role'] } },
       },
+      { path: 'pay/alipay', component: PayAlipayComponent },
+      { path: 'pay/wechatpay', component: PayWechatpayComponent },
     ],
   },
   // 全屏布局
