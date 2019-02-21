@@ -20,7 +20,7 @@ namespace ngDemo.AliPay
 
         public AliPayAppService()
         {
-            client = new DefaultAopClient("https://openapi.alipay.com/gateway.do", APPID, APP_PRIVATE_KEY, "json", "1.0", "RSA2", ALIPAY_PUBLIC_KEY, CHARSET, false);
+            client = new DefaultAopClient("https://openapi.alipaydev.com/gateway.do", APPID, APP_PRIVATE_KEY, "json", "1.0", "RSA2", ALIPAY_PUBLIC_KEY, CHARSET, false);
         }
 
         public string close(string para)

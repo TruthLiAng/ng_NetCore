@@ -89,7 +89,7 @@ const INTERCEPTOR_PROVIDES = [
 // #region Startup Service
 import { StartupService } from '@core/startup/startup.service';
 export function StartupServiceFactory(
-  injector:Injector,
+  injector: Injector,
   startupService: StartupService,
 ): Function {
   return () => startupService.load();
@@ -99,7 +99,7 @@ const APPINIT_PROVIDES = [
   {
     provide: APP_INITIALIZER,
     useFactory: StartupServiceFactory,
-    deps: [Injector,StartupService],
+    deps: [Injector, StartupService],
     multi: true,
   },
 ];
