@@ -87,19 +87,12 @@
   <ItemGroup>
     <Folder Include="src\app\money-account\edit-account\" />
   </ItemGroup>
-  <Target Name="PrepublishScript" BeforeTargets="ComputeFilesToPublish">
-    <Exec Command="ng build --prod" />
-    <Exec Command="robocopy $(MSBuildProjectDirectory)\wwwroot\dist\ $(MSBuildProjectDirectory)\wwwroot\ /S /E /MOVE" IgnoreExitCode="True" />
-    <ItemGroup>
-      <DistFiles Include="wwwroot\**\*" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-        <RelativePath>%(DistFiles.Identity)</RelativePath>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </ResolvedFileToPublish>
-    </ItemGroup>
-  </Target>
   <PropertyGroup>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1Staging_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties appsettings_1Staging_1json__JSONSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

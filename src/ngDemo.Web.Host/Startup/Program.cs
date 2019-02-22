@@ -13,6 +13,7 @@ namespace ngDemo.Web.Host.Startup
         public static IWebHost InitWebHost(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
+                .UseKestrel().UseUrls("http://*:5000")
                 .UseStartup<Startup>()
                 .Build();
         }

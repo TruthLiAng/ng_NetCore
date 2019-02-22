@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./passport.component.less'],
 })
 export class LayoutPassportComponent {
+  year = new Date().getFullYear().toString();
+
   links = [
     {
       title: '帮助',

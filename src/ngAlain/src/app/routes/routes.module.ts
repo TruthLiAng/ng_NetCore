@@ -26,7 +26,7 @@ const COMPONENTS = [
   DashboardAnalysisComponent,
   DashboardMonitorComponent,
   DashboardWorkplaceComponent,
-  //pay pages
+  // //pay pages
   PayAlipayComponent,
   PayWechatpayComponent,
   // passport pages

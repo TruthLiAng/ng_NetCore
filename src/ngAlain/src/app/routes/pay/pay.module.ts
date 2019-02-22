@@ -4,7 +4,7 @@ import { PayRoutingModule } from './pay-routing.module';
 import { PayAlipayComponent } from './alipay/alipay.component';
 import { PayWechatpayComponent } from './wechatpay/wechatpay.component';
 
-const COMPONENTS = [PayAlipayComponent, PayWechatpayComponent];
+const COMPONENTS = []; //PayAlipayComponent, PayWechatpayComponent
 const COMPONENTS_NOROUNT = [];
 
 @NgModule({

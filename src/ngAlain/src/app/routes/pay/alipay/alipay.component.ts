@@ -53,4 +53,6 @@ export class PayAlipayComponent implements OnInit {
         newWindow.document.close();
       });
   }
+
+  query() {}
 }
