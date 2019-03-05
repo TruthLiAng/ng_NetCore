@@ -1,15 +1,14 @@
-﻿using Aop.Api;
-using Aop.Api.Domain;
-using Aop.Api.Request;
-using Aop.Api.Response;
+﻿using Abp;
+using Alipay.AopSdk.Core;
+using Alipay.AopSdk.Core.Domain;
+using Alipay.AopSdk.Core.Request;
+using Alipay.AopSdk.Core.Response;
 using ngDemo.Alipay;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ngDemo.AliPay
 {
-    public class AliPayAppService : IAliPayAppService
+    public class AliPayAppService : AbpServiceBase, IAliPayAppService
     {
         private IAopClient client;
 
@@ -18,9 +17,25 @@ namespace ngDemo.AliPay
         private string ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA665ZbAfWWNQVLEwgQZ/B19HnfRJLPtEsyXKwACvnz9mk+zf+vti2sCBJz0aXaOIMrxw18iDR9JkTSjVDLjJE6r0aJeSz1wfLoUHqsepYGDjJOOlh7+8Ro46VGmb22C8ReqJQPCWgmcXDGeP7r355HEIMZlMVD+Ti+FVFFggYV5rS72yfJaGebauFqJbGEKNnyTAqGMtZzna2+mctY2O0Rc4Du/PnVk449n4Wty//kBh4ubnaP8kQtXyHBs0vwYUClrqBE4Lje7atP8oQnCJsSHXBQgoK5H8ZUZRzfVeiXnB2c5xmgBXgzNhfx79beVUseNiWilEhXgl/eJahOrRrVwIDAQAB";
         private string CHARSET = "UTF-8";
 
+        private static string GetCurrentPath()
+        {
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            return basePath + "//App_Data//";
+        }
+
         public AliPayAppService()
         {
-            client = new DefaultAopClient("https://openapi.alipaydev.com/gateway.do", APPID, APP_PRIVATE_KEY, "json", "1.0", "RSA2", ALIPAY_PUBLIC_KEY, CHARSET, false);
+            try
+            {
+                //client = new DefaultAopClient("https://openapi.alipaydev.com/gateway.do", APPID, GetCurrentPath() + "rsa_private_key_pkcs8.pem", "json", "1.0", "RSA2", GetCurrentPath() + "rsa_public_key_pkcs8.pem", CHARSET, true);
+
+                client = new DefaultAopClient("https://openapi.alipaydev.com/gateway.do", APPID, APP_PRIVATE_KEY, "json", "1.0", "RSA2", ALIPAY_PUBLIC_KEY, CHARSET, false);
+                Logger.Info("初始化成功");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("初始化支付宝支付对象失败！", ex);
+            }
         }
 
         public string close(string para)
@@ -35,17 +50,26 @@ namespace ngDemo.AliPay
 
         public string pay(AlipayTradePagePayModel para)
         {
-            AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
-            // 设置同步回调地址
-            request.SetReturnUrl("");
-            // 设置异步通知接收地址
-            request.SetNotifyUrl("");
-            // 将业务model载入到request
+            try
+            {
+                AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
+                // 设置同步回调地址
+                request.SetReturnUrl("");
+                // 设置异步通知接收地址
+                request.SetNotifyUrl("");
+                // 将业务model载入到request
 
-            para.QrPayMode = "2";
-            request.SetBizModel(para);
-            AlipayTradePagePayResponse response = client.pageExecute(request, null, "post");
-            return response.Body;
+                para.QrPayMode = "2";
+                request.SetBizModel(para);
+
+                AlipayTradePagePayResponse response = client.PageExecute(request, null, "post");
+                return response.Body;
+            }
+            catch (Exception e)
+            {
+                Logger.Error("失败", e);
+                return "支付失败";
+            }
         }
 
         public string query(AlipayTradeQueryModel para)

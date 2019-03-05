@@ -11,12 +11,10 @@
     <RootNamespace>ngDemo</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ngDemo.Core\ngDemo.Core.csproj" />
-    <ProjectReference Include="..\ngDemo.EntityFrameworkCore\ngDemo.EntityFrameworkCore.csproj" />
+    <PackageReference Include="Alipay.AopSdk.Core" Version="2.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AopSdk">
-      <HintPath>..\ngDemo.Web.Core\SDK\AliPay\AopSdk.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\ngDemo.Core\ngDemo.Core.csproj" />
+    <ProjectReference Include="..\ngDemo.EntityFrameworkCore\ngDemo.EntityFrameworkCore.csproj" />
   </ItemGroup>
 </Project>

@@ -16,9 +16,9 @@ export class PayAlipayComponent implements OnInit {
       '外星人Alienware 2018新款外星人游戏本17.3英寸笔记本游戏本电脑 【性价比】i7-8750 1070 16G FHD 1TB 机械+1TB ssd',
     subject:
       '外星人Alienware 2018新款外星人游戏本17.3英寸笔记本游戏本电脑 【性价比】i7-8750 1070 16G FHD 1TB 机械+1TB ssd',
-    totalAmount: '99999.00',
-    outTradeNo: new Date().getTime().toString(),
-    productCode: 'FAST_INSTANT_TRADE_PAY',
+    total_amount: '99999.00',
+    out_trade_no: new Date().getTime().toString(),
+    product_code: 'FAST_INSTANT_TRADE_PAY',
   };
 
   schema: SFSchema = {

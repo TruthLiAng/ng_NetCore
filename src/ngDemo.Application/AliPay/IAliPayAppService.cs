@@ -1,8 +1,5 @@
 ﻿using Abp.Application.Services;
-using Aop.Api.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Alipay.AopSdk.Core.Domain;
 
 namespace ngDemo.Alipay
 {
