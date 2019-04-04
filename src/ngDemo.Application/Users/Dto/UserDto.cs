@@ -36,5 +36,7 @@ namespace ngDemo.Users.Dto
         public DateTime CreationTime { get; set; }
 
         public string[] RoleNames { get; set; }
+
+        public string AvatarImg { get; set; }
     }
 }

@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\app\money-account\edit-account\" />
+    <Folder Include="Upload\" />
   </ItemGroup>
   <PropertyGroup>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>

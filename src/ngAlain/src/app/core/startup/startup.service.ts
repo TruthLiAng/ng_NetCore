@@ -17,6 +17,7 @@ import { NzIconService, NzMessageService } from 'ng-zorro-antd';
 import { ICONS_AUTO } from '../../../style-icons-auto';
 import { ICONS } from '../../../style-icons';
 import { CacheService } from '@delon/cache';
+import { environment } from '@env/environment';
 
 /**
  * 用于应用启动时
@@ -101,6 +102,7 @@ export class StartupService {
           let user = {
             name: sessionData.user.name,
             email: sessionData.user.emailAddress,
+            avatar: environment.imgUrl + sessionData.user.avatarImg,
           };
 
           this.settingService.setUser(user);

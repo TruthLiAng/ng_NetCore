@@ -36,6 +36,8 @@ namespace ngDemo.Users.Dto
         [DisableAuditing]
         public string Password { get; set; }
 
+        public string AvatarImg { get; set; }
+
         public void Normalize()
         {
             if (RoleNames == null)
