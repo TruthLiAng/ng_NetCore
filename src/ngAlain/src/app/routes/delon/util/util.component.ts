@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
-import { copy, format, yuan } from '@delon/util';
+import { copy, format } from '@delon/util';
 
 @Component({
   selector: 'app-util',
@@ -29,7 +29,7 @@ export class UtilComponent {
   yuan_str: any;
   yuan_res: string;
   onYuan(value: string) {
-    this.yuan_res = yuan(value);
+    this.yuan_res = value;
   }
 
   // endregion

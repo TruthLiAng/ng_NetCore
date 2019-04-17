@@ -5,7 +5,7 @@ import * as screenfull from 'screenfull';
   selector: 'header-fullscreen',
   template: `
     <i nz-icon [type]="status ? 'fullscreen' : 'fullscreen-exit'"></i>
-    {{(status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | translate }}
+    {{ (status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | translate }}
   `,
   host: {
     '[class.d-block]': 'true',

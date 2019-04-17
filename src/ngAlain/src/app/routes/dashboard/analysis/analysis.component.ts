@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { STColumn } from '@delon/abc';
-import { getTimeDistance, yuan } from '@delon/util';
+import { getTimeDistance } from '@delon/util';
 import { _HttpClient } from '@delon/theme';
 import { I18NService } from '@core/i18n/i18n.service';
 
@@ -100,7 +100,7 @@ export class DashboardAnalysisComponent implements OnInit {
   }
 
   handlePieValueFormat(value: any) {
-    return yuan(value);
+    return value;
   }
 
   _activeTab = 0;
