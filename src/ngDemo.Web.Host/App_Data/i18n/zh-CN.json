@@ -72,6 +72,8 @@
   "menu.pay": "支付展示",
   "menu.AliPay": "支付宝支付",
   "menu.WechatPay": "微信支付",
+  "menu.until": "小工具",
+  "menu.g2": "g2",
   "app.analysis.test": "工专路 {{no}} 号店",
   "app.analysis.introduce": "指标说明",
   "app.analysis.total-sales": "总销售额",

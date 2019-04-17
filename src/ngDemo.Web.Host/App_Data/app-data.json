@@ -68,6 +68,20 @@
           "icon": "anticon anticon-pay-circle"
         }
       ]
+    },
+    {
+      "text": "小功能",
+      "i18n": "menu.until",
+      "group": true,
+      "hideInBreadcrumb": true,
+      "children": [
+        {
+          "text": "图表",
+          "i18n": "menu.g2",
+          "link": "/g2/g2",
+          "icon": "anticon anticon-bar-chart"
+        }
+      ]
     }
   ]
 }

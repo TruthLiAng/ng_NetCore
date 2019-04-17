@@ -1,0 +1,7 @@
+<page-header> </page-header>
+<div sg-container="1">
+  <sg><g2-bar height="200" [title]="'年趋势'" [data]="Data1"></g2-bar></sg>
+</div>
+<div sg-container="1">
+  <sg><g2-custom (render)="ringRender($event)"></g2-custom></sg>
+</div>

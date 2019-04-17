@@ -20,6 +20,7 @@ import { CallbackComponent } from './callback/callback.component';
 import { Exception403Component } from './exception/403.component';
 import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
+import { G2G2Component } from './g2/g2/g2.component';
 
 const COMPONENTS = [
   DashboardV1Component,
@@ -39,6 +40,8 @@ const COMPONENTS = [
   Exception403Component,
   Exception404Component,
   Exception500Component,
+  //g2 pages
+  G2G2Component,
 ];
 const COMPONENTS_NOROUNT = [];
 
