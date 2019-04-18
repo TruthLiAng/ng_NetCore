@@ -105,6 +105,10 @@ const APPINIT_PROVIDES = [
 ];
 // #endregion
 
+// #region Third Service
+const THIRD_SERVICES = [WebSocketService];
+// #endregion
+
 import { DelonModule } from './delon.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -112,6 +116,7 @@ import { AppComponent } from './app.component';
 import { RoutesModule } from './routes/routes.module';
 import { LayoutModule } from './layout/layout.module';
 import { DelonCacheModule } from '@delon/cache';
+import { WebSocketService } from '@shared/socket/web-socket.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -134,6 +139,7 @@ import { DelonCacheModule } from '@delon/cache';
     ...INTERCEPTOR_PROVIDES,
     ...I18NSERVICE_PROVIDES,
     ...APPINIT_PROVIDES,
+    ...THIRD_SERVICES,
   ],
   bootstrap: [AppComponent],
 })

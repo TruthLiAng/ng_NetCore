@@ -21,6 +21,7 @@ import { Exception403Component } from './exception/403.component';
 import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
 import { G2G2Component } from './g2/g2/g2.component';
+import { SocketSocketTestTestComponent } from './socket/socket/test/test/test.component';
 
 const COMPONENTS = [
   DashboardV1Component,
@@ -42,6 +43,8 @@ const COMPONENTS = [
   Exception500Component,
   //g2 pages
   G2G2Component,
+  //socket pages
+  SocketSocketTestTestComponent,
 ];
 const COMPONENTS_NOROUNT = [];
 

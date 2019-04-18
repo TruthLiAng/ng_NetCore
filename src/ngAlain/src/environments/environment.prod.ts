@@ -4,4 +4,5 @@ export const environment = {
   useHash: true,
   hmr: false,
   imgUrl: '/ngCoreImg/',
+  socketUrl: 'ws://localhost:10086',
 };

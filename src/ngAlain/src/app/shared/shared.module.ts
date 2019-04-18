@@ -25,7 +25,7 @@ const THIRDMODULES = [
 ];
 // #endregion
 
-// #region your componets & directives
+// #region your componets & directives & services
 const COMPONENTS = [];
 const DIRECTIVES = [];
 // #endregion

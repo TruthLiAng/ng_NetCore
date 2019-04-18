@@ -80,6 +80,12 @@
           "i18n": "menu.g2",
           "link": "/g2/g2",
           "icon": "anticon anticon-bar-chart"
+        },
+        {
+          "text": "websocket测试",
+          "i18n": "menu.socket",
+          "link": "/socket/test",
+          "icon": "anticon anticon-notification"
         }
       ]
     }

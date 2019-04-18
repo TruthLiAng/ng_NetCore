@@ -8,6 +8,7 @@ export const environment = {
   useHash: true,
   hmr: true,
   imgUrl: 'http://localhost:8866/',
+  socketUrl: 'ws://localhost:10086',
 };
 
 /*

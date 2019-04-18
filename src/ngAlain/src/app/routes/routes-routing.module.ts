@@ -27,6 +27,7 @@ import { Exception500Component } from './exception/500.component';
 import { ACLGuard, ACLType } from '@delon/acl';
 //g2 pages
 import { G2G2Component } from './g2/g2/g2.component';
+import { SocketSocketTestTestComponent } from './socket/socket/test/test/test.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,7 @@ const routes: Routes = [
       { path: 'pay/alipay', component: PayAlipayComponent },
       { path: 'pay/wechatpay', component: PayWechatpayComponent },
       { path: 'g2/g2', component: G2G2Component },
+      { path: 'socket/test', component: SocketSocketTestTestComponent },
     ],
   },
   // 全屏布局
